@@ -317,6 +317,42 @@ clearpteu(pde_t *pgdir, char *uva)
   *pte &= ~PTE_U;
 }
 
+int
+mprotect(void *addr, int len)
+{
+  pte_t *page_table_entry;
+  cprintf("*addr: %d\n",(uint)addr);
+  
+  uint base_addr = PGROUNDDOWN((uint)addr);
+  uint curr = base_addr;
+  do {
+
+    page_table_entry = walkpgdir(base_addr,(void *)curr ,0);
+    curr += PGSIZE;
+    *page_table_entry &= 0xfffffff9;
+    *page_table_entry |= (PTE_P | PTE_W); 
+    } while(curr < ((uint)addr +len));
+  return 0;
+}
+
+int
+munprotect(void *addr, int len)
+{
+  pte_t *page_table_entry;
+  cprintf("*addr: %d\n",(uint)addr);
+  
+  uint base_addr = PGROUNDDOWN((uint)addr);
+  uint curr = base_addr;
+  do {
+    
+    page_table_entry = walkpgdir(base_addr,(void *)curr ,0);
+    curr += PGSIZE;
+    *page_table_entry &= 0xfffffff9;
+    *page_table_entry |= PTE_P;
+    } while(curr < ((uint)addr +len));
+  return 0;
+}
+
 // Given a parent process's page table, create a copy
 // of it for a child.
 pde_t*

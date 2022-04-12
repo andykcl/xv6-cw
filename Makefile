@@ -179,6 +179,7 @@ UPROGS := \
 	_nullderef\
 	_echo\
 	_forktest\
+	_mprotecttest\
 	_grep\
 	_init\
 	_kill\
