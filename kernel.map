@@ -176,7 +176,7 @@ Discarded input sections
                 0x0000000000000000        0x0 vm.o
  .note.gnu.property
                 0x0000000000000000       0x1c vm.o
- .eh_frame      0x0000000000000000      0x3a4 vm.o
+ .eh_frame      0x0000000000000000      0x3c8 vm.o
 
 Memory Configuration
 
@@ -187,7 +187,7 @@ Linker script and memory map
 
                 0x0000000080100000                . = 0x80100000
 
-.text           0x0000000080100000     0x726a load address 0x0000000000100000
+.text           0x0000000080100000     0x72fa load address 0x0000000000100000
  *(.text .stub .text.* .gnu.linkonce.t.*)
  .text          0x0000000080100000       0x34 entry.o
                 0x0000000080100000                multiboot_header
@@ -641,7 +641,7 @@ Linker script and memory map
                 0x0000000080106843                vector254
                 0x000000008010684f                vector255
  *fill*         0x000000008010685b        0x5 
- .text          0x0000000080106860      0xa0a vm.o
+ .text          0x0000000080106860      0xa9a vm.o
                 0x0000000080106a20                seginit
                 0x0000000080106ab0                switchkvm
                 0x0000000080106ad0                switchuvm
@@ -654,103 +654,102 @@ Linker script and memory map
                 0x0000000080106f90                kvmalloc
                 0x0000000080106fb0                clearpteu
                 0x0000000080106fe0                mprotect
-                0x0000000080107040                munprotect
-                0x00000000801070a0                copyuvm
-                0x00000000801071a0                uva2ka
-                0x00000000801071e0                copyout
+                0x0000000080107090                munprotect
+                0x0000000080107130                copyuvm
+                0x0000000080107230                uva2ka
+                0x0000000080107270                copyout
                 [!provide]                        PROVIDE (etext = .)
 
-.iplt           0x000000008010726a        0x0 load address 0x000000000010726a
- .iplt          0x000000008010726a        0x0 entry.o
+.iplt           0x00000000801072fa        0x0 load address 0x00000000001072fa
+ .iplt          0x00000000801072fa        0x0 entry.o
 
-.rodata         0x0000000080107280      0x9df load address 0x0000000000107280
+.rodata         0x0000000080107300      0x9df load address 0x0000000000107300
  *(.rodata .rodata.* .gnu.linkonce.r.*)
  .rodata.str1.1
-                0x0000000080107280       0x2d bio.o
+                0x0000000080107300       0x2d bio.o
  .rodata.str1.1
-                0x00000000801072ad       0x43 console.o
+                0x000000008010732d       0x43 console.o
                                          0x45 (size before relaxing)
- .rodata        0x00000000801072f0       0x11 console.o
+ .rodata        0x0000000080107370       0x11 console.o
  .rodata.str1.1
-                0x0000000080107301        0xc exec.o
+                0x0000000080107381        0xc exec.o
  .rodata.str1.1
-                0x000000008010730d       0x32 file.o
+                0x000000008010738d       0x32 file.o
                                          0x3c (size before relaxing)
  .rodata.str1.1
-                0x000000008010733f       0xb6 fs.o
+                0x00000000801073bf       0xb6 fs.o
                                          0xbe (size before relaxing)
- *fill*         0x00000000801073f5        0x3 
+ *fill*         0x0000000080107475        0x3 
  .rodata.str1.4
-                0x00000000801073f8       0x53 fs.o
+                0x0000000080107478       0x53 fs.o
  .rodata.str1.1
-                0x000000008010744b       0x68 ide.o
- *fill*         0x00000000801074b3        0x1 
+                0x00000000801074cb       0x68 ide.o
+ *fill*         0x0000000080107533        0x1 
  .rodata.str1.4
-                0x00000000801074b4       0x32 ioapic.o
+                0x0000000080107534       0x32 ioapic.o
  .rodata.str1.1
-                0x00000000801074e6        0xb kalloc.o
- *fill*         0x00000000801074f1        0xf 
- .rodata        0x0000000080107500      0x220 kbd.o
+                0x0000000080107566        0xb kalloc.o
+ *fill*         0x0000000080107571        0xf 
+ .rodata        0x0000000080107580      0x220 kbd.o
  .rodata.str1.1
-                0x0000000080107720       0x44 log.o
+                0x00000000801077a0       0x44 log.o
  .rodata.str1.1
-                0x0000000080107764       0x14 main.o
+                0x00000000801077e4       0x14 main.o
  .rodata.str1.1
-                0x0000000080107778       0x22 mp.o
- *fill*         0x000000008010779a        0x2 
+                0x00000000801077f8       0x22 mp.o
+ *fill*         0x000000008010781a        0x2 
  .rodata.str1.4
-                0x000000008010779c       0x1f mp.o
+                0x000000008010781c       0x1f mp.o
  .rodata.str1.1
-                0x00000000801077bb        0x5 pipe.o
+                0x000000008010783b        0x5 pipe.o
  .rodata.str1.1
-                0x00000000801077c0       0xe2 proc.o
+                0x0000000080107840       0xe2 proc.o
                                          0xe8 (size before relaxing)
- *fill*         0x00000000801078a2        0x2 
+ *fill*         0x0000000080107922        0x2 
  .rodata.str1.4
-                0x00000000801078a4       0x26 proc.o
- *fill*         0x00000000801078ca        0x2 
- .rodata        0x00000000801078cc       0x18 proc.o
+                0x0000000080107924       0x26 proc.o
+ *fill*         0x000000008010794a        0x2 
+ .rodata        0x000000008010794c       0x18 proc.o
  .rodata.str1.1
-                0x00000000801078e4        0xb sleeplock.o
+                0x0000000080107964        0xb sleeplock.o
  .rodata.str1.1
-                0x00000000801078ef       0x2e spinlock.o
+                0x000000008010796f       0x2e spinlock.o
  .rodata.str1.1
-                0x000000008010791d       0x1c syscall.o
- *fill*         0x0000000080107939        0x7 
- .rodata        0x0000000080107940       0x60 syscall.o
+                0x000000008010799d       0x1c syscall.o
+ *fill*         0x00000000801079b9        0x7 
+ .rodata        0x00000000801079c0       0x60 syscall.o
  .rodata.str1.1
-                0x00000000801079a0       0x61 sysfile.o
+                0x0000000080107a20       0x61 sysfile.o
                                          0x63 (size before relaxing)
  .rodata.str1.1
-                0x0000000080107a01        0xa trap.o
- *fill*         0x0000000080107a0b        0x1 
+                0x0000000080107a81        0xa trap.o
+ *fill*         0x0000000080107a8b        0x1 
  .rodata.str1.4
-                0x0000000080107a0c       0x9b trap.o
- *fill*         0x0000000080107aa7        0x1 
- .rodata        0x0000000080107aa8       0x80 trap.o
+                0x0000000080107a8c       0x9b trap.o
+ *fill*         0x0000000080107b27        0x1 
+ .rodata        0x0000000080107b28       0x80 trap.o
  .rodata.str1.1
-                0x0000000080107b28        0x8 uart.o
+                0x0000000080107ba8        0x8 uart.o
  .rodata.str1.1
-                0x0000000080107b30      0x10b vm.o
-                                        0x111 (size before relaxing)
- *fill*         0x0000000080107c3b        0x1 
+                0x0000000080107bb0      0x10c vm.o
+                                        0x112 (size before relaxing)
  .rodata.str1.4
-                0x0000000080107c3c       0x23 vm.o
+                0x0000000080107cbc       0x23 vm.o
 
-.rel.dyn        0x0000000080107c60        0x0 load address 0x0000000000107c60
- .rel.got       0x0000000080107c60        0x0 entry.o
- .rel.iplt      0x0000000080107c60        0x0 entry.o
- .rel.text      0x0000000080107c60        0x0 entry.o
+.rel.dyn        0x0000000080107ce0        0x0 load address 0x0000000000107ce0
+ .rel.got       0x0000000080107ce0        0x0 entry.o
+ .rel.iplt      0x0000000080107ce0        0x0 entry.o
+ .rel.text      0x0000000080107ce0        0x0 entry.o
  .rel.text.startup
-                0x0000000080107c60        0x0 entry.o
- .rel.data      0x0000000080107c60        0x0 entry.o
+                0x0000000080107ce0        0x0 entry.o
+ .rel.data      0x0000000080107ce0        0x0 entry.o
 
-.stab           0x0000000080107c5f        0x0
+.stab           0x0000000080107cdf        0x0
                 [!provide]                        PROVIDE (__STAB_BEGIN__ = .)
  *(.stab)
                 [!provide]                        PROVIDE (__STAB_END__ = .)
 
-.stabstr        0x0000000080107c5f        0x0
+.stabstr        0x0000000080107cdf        0x0
                 [!provide]                        PROVIDE (__STABSTR_BEGIN__ = .)
  *(.stabstr)
                 [!provide]                        PROVIDE (__STABSTR_END__ = .)
@@ -919,7 +918,7 @@ LOAD initcode
 LOAD entryother
 OUTPUT(kernel elf32-i386)
 
-.debug_line     0x0000000000000000     0x6e0d
+.debug_line     0x0000000000000000     0x6e97
  .debug_line    0x0000000000000000       0x41 entry.o
  .debug_line    0x0000000000000041      0x286 bio.o
  .debug_line    0x00000000000002c7      0x8fd console.o
@@ -948,9 +947,9 @@ OUTPUT(kernel elf32-i386)
  .debug_line    0x0000000000005cae      0x2c3 trap.o
  .debug_line    0x0000000000005f71      0x290 uart.o
  .debug_line    0x0000000000006201      0x32f vectors.o
- .debug_line    0x0000000000006530      0x8dd vm.o
+ .debug_line    0x0000000000006530      0x967 vm.o
 
-.debug_info     0x0000000000000000    0x1249b
+.debug_info     0x0000000000000000    0x124ea
  .debug_info    0x0000000000000000       0x26 entry.o
  .debug_info    0x0000000000000026      0x473 bio.o
  .debug_info    0x0000000000000499     0x1488 console.o
@@ -979,7 +978,7 @@ OUTPUT(kernel elf32-i386)
  .debug_info    0x000000000000f3e7      0xbe2 trap.o
  .debug_info    0x000000000000ffc9      0xdce uart.o
  .debug_info    0x0000000000010d97       0x26 vectors.o
- .debug_info    0x0000000000010dbd     0x16de vm.o
+ .debug_info    0x0000000000010dbd     0x172d vm.o
 
 .debug_abbrev   0x0000000000000000     0x3f6f
  .debug_abbrev  0x0000000000000000       0x14 entry.o
@@ -1072,66 +1071,66 @@ OUTPUT(kernel elf32-i386)
  .debug_aranges
                 0x0000000000000388       0x20 vm.o
 
-.debug_str      0x0000000000000000      0xeed
+.debug_str      0x0000000000000000      0xed3
  .debug_str     0x0000000000000000       0x2f entry.o
  .debug_str     0x000000000000002f      0x1e4 bio.o
                                         0x236 (size before relaxing)
  .debug_str     0x0000000000000213      0x2b3 console.o
                                         0x4c9 (size before relaxing)
- .debug_str     0x00000000000004c6      0x11b exec.o
+ .debug_str     0x00000000000004c6      0x121 exec.o
                                         0x456 (size before relaxing)
- .debug_str     0x00000000000005e1       0x77 file.o
+ .debug_str     0x00000000000005e7       0x77 file.o
                                         0x2c5 (size before relaxing)
- .debug_str     0x0000000000000658       0xf1 fs.o
+ .debug_str     0x000000000000065e       0xf1 fs.o
                                         0x56a (size before relaxing)
- .debug_str     0x0000000000000749       0x81 ide.o
+ .debug_str     0x000000000000074f       0x81 ide.o
                                         0x42d (size before relaxing)
- .debug_str     0x00000000000007ca       0x3a ioapic.o
+ .debug_str     0x00000000000007d0       0x3a ioapic.o
                                         0x1b2 (size before relaxing)
- .debug_str     0x0000000000000804       0x51 kalloc.o
+ .debug_str     0x000000000000080a       0x51 kalloc.o
                                         0x1e9 (size before relaxing)
- .debug_str     0x0000000000000855       0x54 kbd.o
+ .debug_str     0x000000000000085b       0x54 kbd.o
                                         0x1c8 (size before relaxing)
- .debug_str     0x00000000000008a9       0x8b lapic.o
+ .debug_str     0x00000000000008af       0x8b lapic.o
                                         0x214 (size before relaxing)
- .debug_str     0x0000000000000934       0x8b log.o
+ .debug_str     0x000000000000093a       0x8b log.o
                                         0x2f5 (size before relaxing)
- .debug_str     0x00000000000009bf       0xc0 main.o
+ .debug_str     0x00000000000009c5       0xc0 main.o
                                         0x45b (size before relaxing)
- .debug_str     0x0000000000000a7f       0xa8 mp.o
+ .debug_str     0x0000000000000a85       0xa8 mp.o
                                         0x407 (size before relaxing)
- .debug_str     0x0000000000000b27        0x9 picirq.o
+ .debug_str     0x0000000000000b2d        0x9 picirq.o
                                         0x14c (size before relaxing)
- .debug_str     0x0000000000000b30       0x31 pipe.o
+ .debug_str     0x0000000000000b36       0x31 pipe.o
                                         0x42a (size before relaxing)
- .debug_str     0x0000000000000b61       0xd3 proc.o
+ .debug_str     0x0000000000000b67       0xd3 proc.o
                                         0x509 (size before relaxing)
- .debug_str     0x0000000000000c34        0xc sleeplock.o
+ .debug_str     0x0000000000000c3a        0xc sleeplock.o
                                         0x386 (size before relaxing)
- .debug_str     0x0000000000000c40        0xb spinlock.o
+ .debug_str     0x0000000000000c46        0xb spinlock.o
                                         0x38a (size before relaxing)
- .debug_str     0x0000000000000c4b       0x1c string.o
+ .debug_str     0x0000000000000c51       0x1c string.o
                                         0x18d (size before relaxing)
- .debug_str     0x0000000000000c67        0x8 swtch.o
+ .debug_str     0x0000000000000c6d        0x8 swtch.o
                                          0x2f (size before relaxing)
- .debug_str     0x0000000000000c6f       0x42 syscall.o
+ .debug_str     0x0000000000000c75       0x42 syscall.o
                                         0x36a (size before relaxing)
- .debug_str     0x0000000000000cb1       0xb7 sysfile.o
+ .debug_str     0x0000000000000cb7       0xb7 sysfile.o
                                         0x551 (size before relaxing)
- .debug_str     0x0000000000000d68       0x81 sysproc.o
+ .debug_str     0x0000000000000d6e       0x81 sysproc.o
                                         0x3e2 (size before relaxing)
- .debug_str     0x0000000000000de9        0xa trapasm.o
+ .debug_str     0x0000000000000def        0xa trapasm.o
                                          0x31 (size before relaxing)
- .debug_str     0x0000000000000df3       0x48 trap.o
+ .debug_str     0x0000000000000df9       0x48 trap.o
                                         0x3d1 (size before relaxing)
- .debug_str     0x0000000000000e3b       0x15 uart.o
+ .debug_str     0x0000000000000e41       0x15 uart.o
                                         0x3f3 (size before relaxing)
- .debug_str     0x0000000000000e50        0xa vectors.o
+ .debug_str     0x0000000000000e56        0xa vectors.o
                                          0x31 (size before relaxing)
- .debug_str     0x0000000000000e5a       0x93 vm.o
-                                        0x498 (size before relaxing)
+ .debug_str     0x0000000000000e60       0x73 vm.o
+                                        0x487 (size before relaxing)
 
-.debug_loc      0x0000000000000000     0x696f
+.debug_loc      0x0000000000000000     0x69c1
  .debug_loc     0x0000000000000000      0x126 bio.o
  .debug_loc     0x0000000000000126      0xaf9 console.o
  .debug_loc     0x0000000000000c1f      0x338 exec.o
@@ -1156,9 +1155,9 @@ OUTPUT(kernel elf32-i386)
  .debug_loc     0x0000000000005706       0x59 sysproc.o
  .debug_loc     0x000000000000575f       0x7f trap.o
  .debug_loc     0x00000000000057de      0x344 uart.o
- .debug_loc     0x0000000000005b22      0xe4d vm.o
+ .debug_loc     0x0000000000005b22      0xe9f vm.o
 
-.debug_ranges   0x0000000000000000      0xce8
+.debug_ranges   0x0000000000000000      0xd18
  .debug_ranges  0x0000000000000000       0x18 bio.o
  .debug_ranges  0x0000000000000018      0x100 console.o
  .debug_ranges  0x0000000000000118       0x18 file.o
@@ -1177,7 +1176,7 @@ OUTPUT(kernel elf32-i386)
  .debug_ranges  0x0000000000000b60       0x80 sysfile.o
  .debug_ranges  0x0000000000000be0       0x20 trap.o
  .debug_ranges  0x0000000000000c00       0x58 uart.o
- .debug_ranges  0x0000000000000c58       0x90 vm.o
+ .debug_ranges  0x0000000000000c58       0xc0 vm.o
 
 .comment        0x0000000000000000       0x2b
  .comment       0x0000000000000000       0x2b bio.o

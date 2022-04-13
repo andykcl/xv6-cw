@@ -318,38 +318,63 @@ clearpteu(pde_t *pgdir, char *uva)
 }
 
 int
-mprotect(void *addr, int len)
-{
-  pte_t *page_table_entry;
-  cprintf("*addr: %d\n",(uint)addr);
-  
-  uint base_addr = PGROUNDDOWN((uint)addr);
-  uint curr = base_addr;
-  do {
+mprotect(void *addr, int len){
+  struct proc *curproc = myproc();
+  //Check whether address points outside of address space
+  if(len <= 0 || (int)addr+len*PGSIZE>curproc->vlimit - curproc->vbase){
+    return -1;
+  }
 
-    page_table_entry = walkpgdir(base_addr,(void *)curr ,0);
-    curr += PGSIZE;
-    *page_table_entry &= 0xfffffff9;
-    *page_table_entry |= (PTE_P | PTE_W); 
-    } while(curr < ((uint)addr +len));
+  //Check whether address is page aligned
+  if((int)(((int) addr) % PGSIZE )  != 0){
+    return -1;
+  }
+
+  //Loop the pages
+  pte_t *pte;
+  int i;
+  for (i = (int) addr; i < ((int) addr + (len) *PGSIZE); i+= PGSIZE){
+    // Looks at virtual address i, and finds where where it should be mapped to according to page table pgdir.
+    pte = walkpgdir(curproc->pgdir,(void*) i, 0);
+    if(pte && ((*pte & PTE_U) != 0) && ((*pte & PTE_P) != 0) ){
+      *pte = (*pte) & (~PTE_W) ; //Changing write permissions
+    } else {
+      return -1;
+    }
+  }
+  //Flush the TLB
+  lcr3(V2P(curproc->pgdir));  
   return 0;
 }
 
 int
-munprotect(void *addr, int len)
-{
-  pte_t *page_table_entry;
-  cprintf("*addr: %d\n",(uint)addr);
+munprotect(void *addr, int len){
+  struct proc *curproc = myproc();
   
-  uint base_addr = PGROUNDDOWN((uint)addr);
-  uint curr = base_addr;
-  do {
-    
-    page_table_entry = walkpgdir(base_addr,(void *)curr ,0);
-    curr += PGSIZE;
-    *page_table_entry &= 0xfffffff9;
-    *page_table_entry |= PTE_P;
-    } while(curr < ((uint)addr +len));
+  //Check whether address points outside of address space
+  if(len <= 0 || (int)addr+len*PGSIZE>curproc->vlimit - curproc->vbase){
+    return -1;
+  }
+
+  //Check whether address is page aligned
+  if((int)(((int) addr) % PGSIZE )  != 0){
+    return -1;
+  }
+
+  //Loop the pages
+  pte_t *pte;
+  int i;
+  for (i = (int) addr; i < ((int) addr + (len) *PGSIZE); i+= PGSIZE){
+    // Looks at virtual address i, and finds where where it should be mapped to according to page table pgdir.
+    pte = walkpgdir(curproc->pgdir,(void*) i, 0);
+    if(pte && ((*pte & PTE_U) != 0) && ((*pte & PTE_P) != 0) ){
+      *pte = (*pte) | (PTE_W) ; //Changing write permissions
+    } else {
+      return -1;
+    }
+  }
+  //Flush the TLB
+  lcr3(V2P(curproc->pgdir));
   return 0;
 }
 
